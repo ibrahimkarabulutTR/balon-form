@@ -10,6 +10,7 @@
 		$email 		= htmlspecialchars(stripslashes(trim($_POST['email'])));
 		$subject 	= htmlspecialchars(stripslashes(trim($_POST['subject'])));
 		$country 	= htmlspecialchars(stripslashes(trim($_POST['country'])));
+		$language 	= htmlspecialchars(stripslashes(trim($_POST['language'])));
 		$message 	= htmlspecialchars(stripslashes(trim($_POST['message'])));
 
 		$mail=new PHPMailer();
@@ -32,12 +33,21 @@
 		E-Posta: '.$email.', 
 		Subject: '.$subject.', 
 		Ülke: '.$country.', 
+		Eğitim Dili: '.$language.', 
 		Mesaj: '.$message.'
 		';
 		if($mail->Send()){
-			echo "Mail Gönderildi.";
+			echo "
+			<section style='width:100%;min-height:500px;height:100%;display:flex;justify-content:center;align-items:center;gap:25px'>
+				<img src='check.jpg' style='max-width:300px;width:100%;'>
+				<h6>Mesajınız Başarıyla İletildi.</h6>
+			</section>";
 		}else{
-			echo "Mail Gönderilemedi.";
+			echo "
+			<section style='width:100%;min-height:500px;height:100%;display:flex;justify-content:center;align-items:center;gap:25px'>
+				<img src='uncheck.jpg' style='max-width:300px;width:100%;'>
+				<h6>Mesajınız İletilemedi.</h6>
+			</section>";
 		}
 	?>
 		<?php
@@ -83,6 +93,21 @@
 						</div>
 					</div>
 					<div class="form-note">Aktif yaşadığınız ülkeyi seçiniz.</div>
+
+					<div class="select-block">
+						<label>Eğitim Dili</label>
+						<div class="custom-select">
+							<div class="active-list">Seçilmedi</div>
+							<input name="language" type="text" class="list-field" value="Türkiye" />
+							<ul class="drop-down-list">
+								<li>Seçilmedi</li>
+								<li>Almanca</li>
+								<li>İngilizce</li>
+								<li>Fransızca</li>
+							</ul>
+						</div>
+					</div>
+
 					<div class="select-block">
 						<label>Konu Seçiniz</label>
 						<div class="custom-select">
